@@ -26,7 +26,7 @@ For a selected timeperiod the following 23 variables are available at every sele
 - Ret: Percent gain in open price compared to the previous (T-1) time periods {float}
 - Return(X=1-10): Percent gain in open price at time point T-X {float}
   
-*Rows with raw incomplete stock data were deleted as were rows with NA or NaN values that might arise during the calculation of indicators or derivatives.*
+*Rows with raw incomplete raw data were deleted as were rows with NA or NaN values that might arise during the calculation of indicators or derivatives.*
 
 Model
 ---
