@@ -13,7 +13,7 @@ For a selected timeperiod the following 23 variables are available at every sele
 - High (H): The highest price of the stock in the interval {float64} 
 - Low (L): The lowest price of the stock in the interval {float64}
 
-**INDICATORS AND DERIVATIVES (Calculated based on raw variables)**
+**INDICATORS AND DERIVATIVES (Calculated using the raw variables)**
 
 - Revative Strength Index [(RSI)](https://www.investopedia.com/terms/r/rsi.asp): Detects overbought and undersold conditions {float64}
 - Simple Moving Average [(SMA)](https://www.investopedia.com/terms/s/sma.asp): The average closing price over a selected time period {float64}
