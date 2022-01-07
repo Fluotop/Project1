@@ -4,7 +4,7 @@ DATA
 Originates from the Yahhoo Finance API
 
 For a selected timeperiod the following variables are available for a selected time interval:
-RAW (used as is)
+**RAW (used as is)**
   Open (O): The opening price of the stock
   Close (C): The closing price of the stock
   High (H): The highest price of the stock in the interval
