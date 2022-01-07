@@ -41,5 +41,9 @@ The overall accuracy can always be expected to be over 70% with this model.
 
 Application
 ---
+![1](https://user-images.githubusercontent.com/61277099/148615161-f411d7e6-82e6-4f13-a7a5-f1461f744212.png)
+![2](https://user-images.githubusercontent.com/61277099/148615178-6e14fde3-2ee5-44fe-aef6-d138ba0ec5a1.png)
+![3](https://user-images.githubusercontent.com/61277099/148615183-aaaea27b-0710-4af8-8d5b-7e57c39b5735.png)
 
-![alt text](image.jpg)
+
+
