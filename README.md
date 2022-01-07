@@ -4,7 +4,7 @@ DATA
 ---
 Originates from the Yahhoo Finance API
 
-For a selected timeperiod the following variables are available for a selected time interval:
+For a selected timeperiod the following variables are available at every selected time interval:
 
 **RAW (used as is)**
 
