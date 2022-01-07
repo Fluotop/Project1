@@ -22,5 +22,5 @@ INDICATORS AND DERIVATIVES (Calculated based on raw variables)
   Return(X=1-10): Percent gain in open price at time point T-X {float64}
   
 Rows with raw incomplete stock data were deleted as were rows with NaN or Null values that might arise during the calculation of indicators or derivatives.
-	---
+---
 MODEL
