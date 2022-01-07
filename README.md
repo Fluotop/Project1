@@ -41,3 +41,5 @@ The overall accuracy can always be expected to be over 70% with this model.
 
 Application
 ---
+
+![alt text](image.jpg)
