@@ -2,7 +2,7 @@
 
 Data
 ---
-Originates from the Yahhoo Finance API
+Originates from the Yahoo Finance API
 
 For a selected timeperiod the following 23 variables are available at every selected time interval:
 
