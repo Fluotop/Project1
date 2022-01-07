@@ -12,7 +12,7 @@ For a selected timeperiod the following variables are available for a selected t
 - Close (C): The closing price of the stock {float64}
 - High (H): The highest price of the stock in the interval {float64} 
 - Low (L): The lowest price of the stock in the interval {float64}
-- 
+
 **INDICATORS AND DERIVATIVES (Calculated based on raw variables)**
 
 - Revative Strength Index [(RSI)](https://www.investopedia.com/terms/r/rsi.asp): Detects overbought and undersold conditions {float64}
