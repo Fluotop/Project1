@@ -38,3 +38,6 @@ The C and gamma parameters of the SVM are automatically optimised using a random
 Performance of the model was assessed by predicting the signal of the test data. The signals can then be compared with the actual signals in a confusion matrix. Based on the signals the potential return can be calculated by multipling the product of the signal with the return over a timerange. This potential return can be compared to a simple buy and hold strategy where the returns are multiplied over a timerange. Finally the precision, recall and f1-score for buy(1), hold(0) and sell(-1) as well as the overall accuracy are calculated in a classification report. <br /> 
 
 The overall accuracy can always be expected to be over 70% with this model.  
+
+Application
+---
