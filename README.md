@@ -21,8 +21,8 @@ For a selected timeperiod the following 23 variables are available at every sele
 - Parabolic Stop And Reverse [(SAR)](https://www.investopedia.com/terms/p/parabolicindicator.asp): Detects trend direction {float64}
 - Average Directional Index [(ADX)](https://www.investopedia.com/terms/w/wilders-dmi-adx.asp): Estimates trend strength {float64}
 - Raw variables of T-1: The OCHL variables of the previous timepoint {float64}
-- Opening difference (OO): Difference between the current open value (O) and the open value (O) at T-1 {float64}
-- Open close difference (OC): Difference between the current open value (O) and the close value (C) at T-1 {float64}
+- Opening difference (OO): Difference between the current open price (O) and the open price (O) at T-1 {float64}
+- Open close difference (OC): Difference between the current open price (O) and the close price (C) at T-1 {float64}
 - Ret: Percent gain in open price compared to the previous (T-1) time periods {float64}
 - Return(X=1-10): Percent gain in open price at time point T-X {float64}
   
