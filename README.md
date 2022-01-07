@@ -1,6 +1,7 @@
 # Project1
 
 DATA
+---
 Originates from the Yahhoo Finance API
 
 For a selected timeperiod the following variables are available for a selected time interval:
@@ -22,5 +23,6 @@ INDICATORS AND DERIVATIVES (Calculated based on raw variables)
   Return(X=1-10): Percent gain in open price at time point T-X {float64}
   
 Rows with raw incomplete stock data were deleted as were rows with NaN or Null values that might arise during the calculation of indicators or derivatives.
----
+
 MODEL
+---
