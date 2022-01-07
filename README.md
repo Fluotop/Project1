@@ -26,7 +26,7 @@ For a selected timeperiod the following variables are available for a selected t
 - Ret: Percent gain in open price compared to the previous (T-1) time periods {float64}
 - Return(X=1-10): Percent gain in open price at time point T-X {float64}
   
-Rows with raw incomplete stock data were deleted as were rows with NaN or Null values that might arise during the calculation of indicators or derivatives.
+*Rows with raw incomplete stock data were deleted as were rows with NaN or Null values that might arise during the calculation of indicators or derivatives.*
 
 MODEL
 ---
