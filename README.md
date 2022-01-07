@@ -35,4 +35,4 @@ Three groups are created based on the Ret variable: the lowest 34% Ret observati
 
 The C and gamma parameters of the SVM are automatically optimised using a randomised search and an Radial Basis Function (RBF) is used as kernel. 
 
-Performance of the model was assessed by predicting the signal of the test data. The signals can then be compared with the actual signals in a confusion matrix. Based on the signals the return can be calculated by multipling the signals with the return  $\pi \Pi$
+Performance of the model was assessed by predicting the signal of the test data. The signals can then be compared with the actual signals in a confusion matrix. Based on the signals the return can be calculated by multipling the signals with the return \pi
