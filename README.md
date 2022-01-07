@@ -1,6 +1,6 @@
 # Project1
 
-DATA
+Data
 ---
 Originates from the Yahhoo Finance API
 
@@ -28,7 +28,7 @@ For a selected timeperiod the following 23 variables are available at every sele
   
 *Rows with raw incomplete stock data were deleted as were rows with NA or NaN values that might arise during the calculation of indicators or derivatives.*
 
-MODEL
+Model
 ---
 By default the Support Vector Machine (SVM) model is trained on 80% of the data and tested on the other 20%.
 Three groups are created based on the Ret variable: the lowest 34% Ret observations are considerd as Sell and get assigned a -1 Signal, the highest 33% Ret observations are classified as Buys and get assigned a 1 Signal, all other orbservations are classified as hold and get assigned a 0 Signal. The Signal is stored in the Signal variable {int}.
