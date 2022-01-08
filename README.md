@@ -76,3 +76,4 @@ TODO:
 - Manually check made predictions
 - Input european stock api's
 - Connect output to banking applications
+- write cleaner code
