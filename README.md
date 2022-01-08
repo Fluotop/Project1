@@ -1,5 +1,7 @@
 # Project1
 
+A daytrading bot based on a SVM model.
+
 Data
 ---
 Originates from the Yahoo Finance API
