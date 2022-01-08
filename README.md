@@ -49,6 +49,7 @@ Has three required fields:
 - Days used to predict: The amount of days used to train en test the model (e.g 60d[ays])
 - Predict every: The time interval between the current and next prediction (e.g 5m(inutes) or 1d(ays))
 A candlestick graph will visualize the selected data.
+
 ![1](https://user-images.githubusercontent.com/61277099/148615161-f411d7e6-82e6-4f13-a7a5-f1461f744212.png)
 
 **Simulation**
@@ -57,17 +58,19 @@ Has three required fields:
 - Fraction of data used for training: The % split of the data to be used in training.
 - \# Fold Crossvalidation: The amount of crossvalidation groups are created when training the model.
 Performance of the created model can be assessed by comparing the return with a buy and hold strategy (top left), The actions of the model are shown in the confusion matrix (top right), The precision, recall, f1-score and overall accuracy are shown in the classification report (bottem left). An estimate of the prediction time is shown in the bottom right.  
+
 ![2](https://user-images.githubusercontent.com/61277099/148615178-6e14fde3-2ee5-44fe-aef6-d138ba0ec5a1.png)
 
 **Results**
 [TODO]
 Shows the current prediction
+
 ![3](https://user-images.githubusercontent.com/61277099/148615183-aaaea27b-0710-4af8-8d5b-7e57c39b5735.png)
 
 
 TODO:
--Fix layout
--Build result tab
--Manually check made predictions
--Input european stock api's
--Connect output to banking applications
+- Fix layout
+- Build result tab
+- Manually check made predictions
+- Input european stock api's
+- Connect output to banking applications
