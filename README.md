@@ -43,7 +43,7 @@ Application
 ---
 The app consists of three tabs:
 
-**Settings**
+**Settings**<br /> 
 Has three required fields:
 - Stock Ticker: The ticker of your stock as found on [Yahoo Finance](https://finance.yahoo.com/).
 - Days used to predict: The amount of days used to train en test the model (e.g 60d[ays])
@@ -52,7 +52,7 @@ A candlestick graph will visualize the selected data.
 
 ![1](https://user-images.githubusercontent.com/61277099/148615161-f411d7e6-82e6-4f13-a7a5-f1461f744212.png)
 
-**Simulation**
+**Simulation**<br /> 
 Has three required fields:
 - \# Datapoints RSI/SMA/ADX: The amount of days before the current timepoint are included when calculating the RSI, SMA and ADX indicators.
 - Fraction of data used for training: The % split of the data to be used in training.
@@ -61,7 +61,7 @@ Performance of the created model can be assessed by comparing the return with a 
 
 ![2](https://user-images.githubusercontent.com/61277099/148615178-6e14fde3-2ee5-44fe-aef6-d138ba0ec5a1.png)
 
-**Results**
+**Results**<br /> 
 [TODO]
 Shows the current prediction
 
