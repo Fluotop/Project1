@@ -111,9 +111,6 @@ def get_indicators(df):
 def build_model(df):
 ##MODEL OPSTELLEN
 
-    global X
-    global cr
-    global y
     split = int(Fraction_training_data*len(df))
 
     #Negeer errors
