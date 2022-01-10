@@ -24,21 +24,21 @@ Interval_to_predict = "15m"
 RSI_SMA_ADX_Period = 10
 Fraction_training_data = 0.8
 CVFolds = 10
-df = pd.DataFrame([])
+
 fig1 = go.Figure()
 fig2 = go.Figure()
 fig3 = go.Figure()
 fig4 = go.Figure()
 cr = ""
 X = []
+y = []
 prediction =""
 def get_data():
-    global df
+
     df = yf.download(Ticker, period = Amount_of_days, interval = Interval_to_predict)
+    return df
 
-
-def get_stock():
-    global fig1
+def get_stock(df):
     get_data()
     ##STOCK FIGUUR
     #declare figure
@@ -72,9 +72,9 @@ def get_stock():
     fig1.update_yaxes()
     return fig1
 
-def get_indicators():
+def get_indicators(df):
 
-    global df
+
     #rijeen met 0-values removed
     df.isin([0]).any().any().sum()
     ##BEREKEN INDICATOREN
@@ -106,17 +106,14 @@ def get_indicators():
         df['return%i' % i] = df['Ret'].shift(i)
 
     df = df.dropna()
+    return df
 
-
-def build_model():
+def build_model(df):
 ##MODEL OPSTELLEN
-    global df
-    global X
-    global fig2
-    global fig3
-    global fig4
-    global cr
 
+    global X
+    global cr
+    global y
     split = int(Fraction_training_data*len(df))
 
     #Negeer errors
@@ -210,7 +207,7 @@ def build_model():
     joblib.dump(cls, 'model.pkl')
     return fig2, fig3, fig4
 
-def make_prediction():
+def make_prediction(df):
     # a = list(Interval_to_predict)
     # if a[-1] == "m":
     #     if len(a) ==3:
@@ -225,10 +222,11 @@ def make_prediction():
     #         timer = a[0] * 8.64e+7
 
 
-    global prediction
-    #build_model()
+    get_data()
+    get_indicators()
+    build_model()
     cls = joblib.load('model.pkl')
-    query = X.iloc[-1]
+    query = df.iloc[-1]
     prediction = cls.predict([query])
     return str(prediction)
 
