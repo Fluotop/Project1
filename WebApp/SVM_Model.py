@@ -25,14 +25,10 @@ RSI_SMA_ADX_Period = 10
 Fraction_training_data = 0.8
 CVFolds = 10
 
-fig1 = go.Figure()
-fig2 = go.Figure()
-fig3 = go.Figure()
-fig4 = go.Figure()
-cr = ""
+
+
 X = []
-y = []
-prediction =""
+
 def get_data():
 
     df = yf.download(Ticker, period = Amount_of_days, interval = Interval_to_predict)
@@ -217,19 +213,10 @@ def make_prediction(df):
     # elif a[-1] == "d":
     #     if len(a) ==2:
     #         timer = a[0] * 8.64e+7
-
-
     get_data()
-    get_indicators()
-    build_model()
+    get_indicators(df)
+    build_model(df)
     cls = joblib.load('model.pkl')
-    query = df.iloc[-1]
+    query = X.iloc[-1]
     prediction = cls.predict([query])
     return str(prediction)
-
-# get_data()
-#
-# get_indicators()
-# build_model()
-# make_prediction()
-#TODO dfcopy iedere keer als df veranderd
