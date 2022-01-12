@@ -36,6 +36,7 @@ import warnings
 
 # Packages used in the App
 import time
+from datetime import datetime
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
@@ -230,47 +231,34 @@ def build_model(df, Fraction_training_data, CVFolds):
 
     # Model opslaan
     joblib.dump(cls, 'model.pkl')
-    return fig2, fig3, fig4
+    query = X.iloc[-1]
+    prediction = cls.predict([query])
+    return fig2, fig3, fig4, prediction
 
 
-def make_prediction():
-    # get time in seconds
-    current_time = time.time()
-    current_time = round(current_time)
-    print(current_time)
-    if Interval_to_predict == "1m":
-        starttime = current_time + current_time % 60
-    elif Interval_to_predict == "2m":
-        starttime = current_time + current_time % (2 * 60)
-    elif Interval_to_predict == "5m":
-        starttime = current_time + current_time % (5 * 60)
-    elif Interval_to_predict == "15m":
-        starttime = current_time + current_time % (15 * 60)
-    elif Interval_to_predict == "30m":
-        starttime = current_time + current_time % (30 * 60)
-    elif Interval_to_predict == "60m":
-        starttime = current_time + current_time % (60 * 60)
-    elif Interval_to_predict == "90m":
-        starttime = current_time + current_time % (90 * 60)
+def make_prediction(Interval_to_predict):
+    # Wait until the start of the next interval
+    current_time = round(time.time())
+    waittime = int(Interval_to_predict[:-1]) * 60
+    time.sleep(waittime - current_time % waittime)
 
-    # if round(time.time()) == starttime:
-    #     global prediction
-    #     #build_model()
-    #     cls = joblib.load('model.pkl')
-    #     query = X.iloc[-1]
-    #     prediction = cls.predict([query])
-    #
-    #     return str(prediction)
+    prediction = build_model(
+        get_indicators(
+            get_data(Ticker, Amount_of_days, Interval_to_predict
+                     ), RSI_SMA_ADX_Period
+        ), Fraction_training_data, CVFolds
+    )[3]
+    prediction = str(prediction[0])
+    return prediction
 
 
-make_prediction()
+# make_prediction(Interval_to_predict)
+
 
 # get_data()
 #
 # get_indicators()
 # build_model()
-# make_prediction()
-# TODO dfcopy iedere keer als df veranderd
 
 
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.COSMO])
@@ -400,9 +388,14 @@ app.layout = html.Div([
                 "Get current prediction",
                 id="Make_Prediction"
             ),
-            html.Div(
-                id="prediction"
-            )
+            html.Button(
+                "Stop predicting",
+                id="Stop_Prediction"
+            ),
+            html.Div(id='prediction'
+                     ),
+            dcc.Interval(id = "trigger",
+                         interval= int(Interval_to_predict[:-1]) * 6000)
         ]),
 
     ]),
@@ -445,15 +438,15 @@ def update_settings(Fetch_stock, Ticker_new, Amount_of_days_new, Interval_to_pre
     State('Interval_to_predict', 'value'),
     prevent_initial_call=True
 )
-def update_simulation(Build_Model, RSI_SMA_ADX_Period, Fraction_training_data, CVFolds, Ticker_new, Amount_of_days_new,
-                      Interval_to_predict_new):
+def update_simulation(Build_Model, RSI_SMA_ADX_Period, Fraction_training_data, CVFolds, Ticker, Amount_of_days,
+                      Interval_to_predict):
     t0 = time.time()
     [fig2, fig3, fig4] = build_model(
         get_indicators(
             get_data(Ticker, Amount_of_days, Interval_to_predict
                      ), RSI_SMA_ADX_Period
         ), Fraction_training_data, CVFolds
-    )
+    )[0:3]
     t1 = time.time()
     # plus one to make sure the prediction function can be included in this time
     total = str(round((t1 - t0) + 1, 2))
@@ -461,17 +454,27 @@ def update_simulation(Build_Model, RSI_SMA_ADX_Period, Fraction_training_data, C
     return fig2, fig3, fig4, timestring
 
 
-# @app.callback(
-#     Output('prediction', 'children'),
-#     Input("Make_Prediction", "n_clicks"),
-#     prevent_initial_call=True
-# )
-# def update_Prediction(Make_Prediction):
-#     #get_data()
-#     #get_indicators()
-#     #build_model()
-#     make_prediction()
-#     return prediction
+@app.callback(
+    Output('prediction', 'children'),
+    Output("Stop_Prediction", "n_clicks"),
+    Input("Make_Prediction", "n_clicks"),
+    Input("Stop_Prediction", "n_clicks"),
+    Input("trigger", "n_intervals"),
+    prevent_initial_call=True
+)
+def update_Prediction(Make_Prediction, Stop_Prediction, trigger):
+    prediction_list = ""
+    if Stop_Prediction == None:
+        prediction = make_prediction(Interval_to_predict)
+        now = datetime.now()
+        timestr = now.strftime("%d/%m/%Y %H:%M:%S")
+        prediction_string = timestr + prediction
+        prediction_list = prediction_list + prediction_string
+        return prediction_list, Stop_Prediction
+    prediction_list = prediction_list + "It's over don't you get it"
+    Stop_Prediction = None
+    return prediction_list, Stop_Prediction
+
 
 if __name__ == '__main__':
     app.run_server(debug=True)
