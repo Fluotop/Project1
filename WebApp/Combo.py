@@ -48,11 +48,11 @@ import dash_bootstrap_components as dbc
 #############################################################################################################
 
 Ticker = "TSLA"
-Amount_of_days = "60d"
-Interval_to_predict = "15m"
+Amount_of_days = "5d"
+Interval_to_predict = "1m"
 RSI_SMA_ADX_Period = 10
 Fraction_training_data = 0.8
-CVFolds = 10
+CVFolds = 2
 
 
 #############################################################################################################
@@ -269,6 +269,9 @@ colors = {
 }
 
 app.layout = html.Div([
+    dcc.Interval(id = "trigger",
+                 interval= (int(Interval_to_predict[:-1]) * 60000), max_intervals = 0),
+
     html.H1('SVM Day Trading Bot V0.1'),
     html.H5('Model and app created by Ben De Maesschalck'),
     dcc.Tabs(id="tabs", value='tabs', children=[
@@ -390,12 +393,12 @@ app.layout = html.Div([
             ),
             html.Button(
                 "Stop predicting",
-                id="Stop_Prediction"
+                id="Stop_Prediction",
+                disabled=True
             ),
             html.Div(id='prediction'
                      ),
-            dcc.Interval(id = "trigger",
-                         interval= int(Interval_to_predict[:-1]) * 6000)
+
         ]),
 
     ]),
@@ -456,25 +459,36 @@ def update_simulation(Build_Model, RSI_SMA_ADX_Period, Fraction_training_data, C
 
 @app.callback(
     Output('prediction', 'children'),
-    Output("Stop_Prediction", "n_clicks"),
-    Input("Make_Prediction", "n_clicks"),
-    Input("Stop_Prediction", "n_clicks"),
     Input("trigger", "n_intervals"),
     prevent_initial_call=True
 )
-def update_Prediction(Make_Prediction, Stop_Prediction, trigger):
+def update_Prediction(trigger):
     prediction_list = ""
-    if Stop_Prediction == None:
-        prediction = make_prediction(Interval_to_predict)
-        now = datetime.now()
-        timestr = now.strftime("%d/%m/%Y %H:%M:%S")
-        prediction_string = timestr + prediction
-        prediction_list = prediction_list + prediction_string
-        return prediction_list, Stop_Prediction
-    prediction_list = prediction_list + "It's over don't you get it"
-    Stop_Prediction = None
-    return prediction_list, Stop_Prediction
+    prediction = make_prediction(Interval_to_predict)
+    now = datetime.now()
+    timestr = now.strftime("%d/%m/%Y %H:%M:%S")
+    prediction_string = timestr + prediction
+    prediction_list = prediction_list + prediction_string
+    print(prediction_list)
+    return prediction_list
 
+@app.callback(
+    Output("Make_Prediction", "disabled"),
+    Output("Stop_Prediction", "disabled"),
+    Output("trigger", "max_intervals"),
+    Output("Make_Prediction", "n_clicks"),
+    Output("Stop_Prediction", "n_clicks"),
+    Input("Make_Prediction", "n_clicks"),
+    Input("Stop_Prediction", "n_clicks"),
+    prevent_initial_call=True
+)
+def toggle_prediction_mode(Make_Prediction, Stop_Prediction):
+    if Make_Prediction != None:
+        Make_Prediction = None
+        return True, False, -1, Make_Prediction, Stop_Prediction
+    if Stop_Prediction != None:
+        Stop_Prediction = None
+        return False, True, 0, Make_Prediction, Stop_Prediction
 
 if __name__ == '__main__':
     app.run_server(debug=True)
