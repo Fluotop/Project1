@@ -17,12 +17,12 @@ For a selected timeperiod the following 23 variables are available at every sele
 
 **INDICATORS AND DERIVATIVES (Calculated using the raw variables)**
 
-- Revative Strength Index [(RSI)](https://www.investopedia.com/terms/r/rsi.asp): Detects overbought and undersold conditions {float}
+- Relative Strength Index [(RSI)](https://www.investopedia.com/terms/r/rsi.asp): Detects overbought and undersold conditions {float}
 - Simple Moving Average [(SMA)](https://www.investopedia.com/terms/s/sma.asp): The average closing price over a selected time period {float}
 - Corr: The correlation between the closing price (C) and the Simple Moving Average (SMA) {float64}
 - Parabolic Stop And Reverse [(SAR)](https://www.investopedia.com/terms/p/parabolicindicator.asp): Detects trend direction {float}
 - Average Directional Index [(ADX)](https://www.investopedia.com/terms/w/wilders-dmi-adx.asp): Estimates trend strength {float}
-- Raw variables of T-1: The OCHL variables of the previous timepoint {float64}
+- Raw variables of T-1: The OCHL variables of the previous time-point {float64}
 - Opening difference (OO): Difference between the current open price (O) and the open price (O) at T-1 {float}
 - Open close difference (OC): Difference between the current open price (O) and the close price (C) at T-1 {float}
 - Ret: Percent gain in open price compared to the previous (T-1) time periods {float}
