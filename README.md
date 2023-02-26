@@ -77,3 +77,8 @@ TODO:
 - Input european stock api's
 - Connect output to banking applications
 - write cleaner code
+"# svm_server" 
+"# svm_server" 
+"# svm_server" 
+"# svm_server" 
+"# svm_server" 

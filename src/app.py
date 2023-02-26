@@ -226,7 +226,8 @@ def build_model(df_complete, fraction_training_data, cv_folds):
     df_complete.loc[df_complete["Ret"] < df_complete["Ret"][:split].quantile(q=0.34), "Signal"] = -1
 
     # Drop columns with redundant correlated information and store labels separately.
-    X = df_complete.drop(["Close", "Signal", "High", "Low", "Volume", "Ret"], axis=1)
+    X = df_complete.drop(["Close", "Adj Close", "Signal", "High", "Low", "Volume", "Ret"], axis=1)
+    print(df_complete.columns)
     y = df_complete["Signal"]
 
     # Search the best parameters for the model via gridsearch and a special CV technique for timeseries data.
